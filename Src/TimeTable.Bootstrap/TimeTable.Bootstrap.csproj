@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TimeTable.Facade.Contracts\TimeTable.Facade.Contracts.csproj" />
+    <ProjectReference Include="..\TimeTable.Facade.Query\TimeTable.Facade.Query.csproj" />
+    <ProjectReference Include="..\TimeTable.Facade.Service\TimeTable.Facade.Service.csproj" />
+    <ProjectReference Include="..\TimeTable.NLog\TimeTable.NLog.csproj" />
+    <ProjectReference Include="..\TimeTable.Persistence\TimeTable.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>
