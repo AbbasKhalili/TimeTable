@@ -1,0 +1,49 @@
+﻿@model TimeTable.Facade.Contracts.Schedule.ViewModels.ScheduleViewModel
+
+@{
+    ViewData["Title"] = "Create Schedule";
+}
+
+
+<h4>Create Schedule</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+
+        @if (Model?.Id > 0)
+        {
+            <span>زمانبندی با موفقیت ثبت شد.</span>
+        }
+
+    <form asp-controller="Schedule" asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <input type="hidden" asp-for="Id" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="CalendarId" class="control-label"></label>
+            <input asp-for="CalendarId" class="form-control" />
+            <span asp-validation-for="CalendarId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Time" class="control-label"></label>
+            <input asp-for="Time" class="form-control" />
+            <span asp-validation-for="Time" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Capacity" class="control-label"></label>
+            <input type="number" asp-for="Capacity" class="form-control" />
+            <span asp-validation-for="Capacity" class="text-danger"></span>
+        </div>
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

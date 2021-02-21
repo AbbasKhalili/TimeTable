@@ -2,6 +2,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,7 +24,14 @@ namespace TimeTableHost
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers().AddControllersAsServices();
+            services.AddMvc();
+            services.AddControllersWithViews();
+
+            services.AddRazorPages()
+                .AddRazorPagesOptions(options =>
+                {
+                    options.Conventions.ConfigureFilter(new IgnoreAntiforgeryTokenAttribute());
+                });
 
             HostConfig = new HostConfig();
             Configuration.Bind("HostConfig", HostConfig);

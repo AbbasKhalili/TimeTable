@@ -132,4 +132,7 @@
   <data name="_105" xml:space="preserve">
     <value>امکان تعریف مانبندی برای خارج از تایم کاری وجود ندارد.</value>
   </data>
+  <data name="_106" xml:space="preserve">
+    <value>برای رزرو باید 2 ساعت قبل اقدام کنید.</value>
+  </data>
 </root>

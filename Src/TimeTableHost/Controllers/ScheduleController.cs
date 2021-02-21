@@ -5,11 +5,8 @@ using TimeTable.Facade.Contracts.Schedule.ViewModels;
 
 namespace TimeTableHost.Controllers
 {
-    [Produces("application/json")]
-    [Consumes("application/json")]
-    [ApiController]
-    [Route("api/Schedule")]
-    public class ScheduleController : ControllerBase
+    [Route("Schedule")]
+    public class ScheduleController : Controller
     {
         private readonly IScheduleFacadeService _service;
 
@@ -18,19 +15,23 @@ namespace TimeTableHost.Controllers
             _service = service;
         }
 
+        public IActionResult Index()
+        {
+            return View();
+        }
+
         [HttpPost]
-        public async Task<long> Post(ScheduleViewModel model)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(ScheduleViewModel model)
         {
-            return await _service.Create(model);
-        }
+            if (model.Id == 0)
+                model.Id = await _service.Create(model);
+            else
+                await _service.Modify(model);
 
-        [HttpPut("{id:long}")]
-        public async Task Put(long id, ScheduleViewModel model)
-        {
-            model.Id = id;
-            await _service.Modify(model);
+            return View("Index",model);
         }
-
+        
         [HttpDelete("{id:long}")]
         public async Task Delete(long id)
         {

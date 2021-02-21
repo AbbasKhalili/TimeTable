@@ -104,5 +104,14 @@ namespace TimeTableHost {
                 return ResourceManager.GetString("_105", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to برای رزرو باید 2 ساعت قبل اقدام کنید..
+        /// </summary>
+        public static string _106 {
+            get {
+                return ResourceManager.GetString("_106", resourceCulture);
+            }
+        }
     }
 }

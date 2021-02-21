@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Framework.Core.Exceptions;
 using TimeTable.Domain.Exceptions;
 using TimeTable.Domain.Schedules;
@@ -25,6 +26,10 @@ namespace TimeTable.Domain.Reserves
 
             if (reservedList.Count >= schedule.Capacity)
                 throw new NoCapacityException();
+
+            var now = DateTime.Now.AddHours(2);
+            if (new DateTime(1, 1, 1, now.Hour, now.Minute, now.Second) > schedule.Time)
+                throw new ReserveTimeException();
         }
     }
 }
